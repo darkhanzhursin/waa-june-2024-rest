@@ -2,7 +2,6 @@ package com.miu.waa.service.course;
 
 import com.miu.waa.entity.Course;
 import com.miu.waa.repository.CourseRepository;
-import com.miu.waa.repository.GenericRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,22 +15,22 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> findAll() {
-        return courseRepository.getCourses();
+        return courseRepository.findAll();
     }
 
     @Override
     public Course find(Long id) {
-        return courseRepository.findById(id);
+        return courseRepository.findById(id).orElseThrow();
     }
 
     @Override
     public void save(Course course) {
-        courseRepository.add(course);
+        courseRepository.save(course);
     }
 
     @Override
     public void update(Course course) {
-        courseRepository.update(course);
+        courseRepository.save(course);
     }
 
     @Override
@@ -41,6 +40,6 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> findByStudentId(Long studentId) {
-        return courseRepository.getCoursesByStudentId(studentId);
+        return courseRepository.findByStudentId(studentId);
     }
 }
