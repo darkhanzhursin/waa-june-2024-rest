@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/courses")
 @RequiredArgsConstructor
@@ -64,7 +65,7 @@ public class CourseController {
     }
 
     @Tag(name = "get", description = "GET methods of Course APIs")
-    @GetMapping("/{studentId}")
+    @GetMapping("/student/{studentId}")
     public ResponseEntity<List<Course>> getCoursesByStudentId(@PathVariable Long studentId) {
        List<Course> courseList = courseService.findByStudentId(studentId);
        if (courseList.isEmpty()) {
